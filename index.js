@@ -33,6 +33,45 @@ bot.on("message", async message => {
   }
 
 
+  if(command === "кик") {
+    if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+      return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+    let member = message.mentions.members.first() || message.guild.members.get(args[0]);
+    if(!member)
+      return message.reply("У нас такого челика нет...");
+    if(!member.kickable)
+      return message.reply("Этого челика кикать нельзя...");
+
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "Причина не указана";
+
+    await member.kick(reason)
+      .catch(error => message.reply(`Сорян, ${message.author}. Я не могу кикнуть этого челика потому, что: ${error}`));
+    message.reply(`${member.user.tag} был кикнут модератором ${message.author.tag} по причине: ${reason}`);
+
+  }
+
+
+  if(command === "бан") {
+    if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+      return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+    let member = message.mentions.members.first();
+    if(!member)
+      return message.reply("У нас такого челика нет...");
+    if(!member.bannable)
+      return message.reply("Этого челика банить нельзя...");
+
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "Причина не указана";
+
+    await member.ban(reason)
+      .catch(error => message.reply(`Сорян, ${message.author}. Я не могу забанить этого челика потому, что: ${error}`));
+    message.reply(`${member.user.tag} был забанен модератором ${message.author.tag} по причине: ${reason}`);
+  }
+
+
 });
 
 bot.login(botconfig.token);
