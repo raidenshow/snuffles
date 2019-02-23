@@ -177,27 +177,14 @@ if(cmd === prefix + "размут") {
     }
 
 
-bot.on = async (client, message, args, ops) => {
 
-  if(cmd === prefix + "плей") {
 
-  if (!message.member.voiceChannel) return message.channel.send('Сначала зайти в войс :)');
-  if (message.guild.me.voiceChannel) return message.channel.send('Я уже сижу в войсе :)');
-  if (!args[0]) return message.channel.send('Укажи ссылочку на то, что мне нужно воспроизвести)');
-  let validate = await ytdl.validateURL(args[0]);
-  if (!validate) return message.channel.send('Эта ссылка не работает :(');
-  let info = await ytdl.getInfo(args[0]);
-  let connection = await message.member.voiceChannel.join();
-  let dispatcher = await connection.play(ytdl(args[0], { filter: 'audioonly'}));
-  message.channel.send(`Сейчас играет: ${info.titile}`);
-}
 
 }
+
 
 
 
 });
 
 bot.login(botconfig.token);
-
-///

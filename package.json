@@ -10,9 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "ffmpeg-binaries": "^4.0.0",
-    "ms": "^2.1.1",
-    "ytdl": "^0.11.1",
-    "ytdl-core": "^0.29.1"
+    "ms": "^2.1.1"
   }
 }
