@@ -24,5 +24,3 @@ bot.on("message", async message => {
 });
 
 bot.login(botconfig.token);
-
-fgfggg
