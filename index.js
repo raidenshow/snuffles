@@ -127,10 +127,8 @@ bot.on("message", async message => {
 if(!mutetime) return message.reply("Укажи время мьюта...");
 
 message.delete().catch(O_o=>{});
+message.channel.send(`${tomute} был замьючен(а) на ${mutetime}`)
 
-try{
-    message.channel.send(`${tomute} был замьючен(а) на ${mutetime}`)
-  }
 
     await(tomute.addRole(muterole.id));
 
