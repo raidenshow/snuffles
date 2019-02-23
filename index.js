@@ -129,9 +129,7 @@ if(!mutetime) return message.reply("Укажи время мьюта...");
 message.delete().catch(O_o=>{});
 
 try{
-    await tomute.send(`Чел, ты был замьючен на ${mutetime}. Не шали!)`)
-  }catch(e){
-    message.channel.send(`Челик был замьючен... но его ЛС закрыто. Мьют на ${mutetime}`)
+    message.channel.send(`${tomute} был замьючен(а) на ${mutetime}`)
   }
 
     await(tomute.addRole(muterole.id));
