@@ -96,7 +96,6 @@ bot.on("message", async message => {
   }
 
     if(cmd === prefix + "мут") {
-      message.delete(5000);
 
       if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
         return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
@@ -134,6 +133,8 @@ try{
   }catch(e){
     message.channel.send(`Челик был замьючен... но его ЛС закрыто. Мьют на ${mutetime}`)
   }
+  .then(message => {
+  message.delete(5000)});
 
     await(tomute.addRole(muterole.id));
 
