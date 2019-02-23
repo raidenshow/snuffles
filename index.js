@@ -33,7 +33,7 @@ bot.on("message", async message => {
   }
 
 
-  if(command === "кик") {
+  if(command === prefix + "кик") {
     if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
       return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
@@ -53,7 +53,7 @@ bot.on("message", async message => {
   }
 
 
-  if(command === "бан") {
+  if(command === prefix + "бан") {
     if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
       return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
