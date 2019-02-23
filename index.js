@@ -130,12 +130,8 @@ message.delete().catch(O_o=>{});
 
 try{
     await tomute.send(`Чел, ты был замьючен на ${mutetime}. Не шали!)`)
-    .then(message => {
-    message.delete(5000)})
   }catch(e){
     message.channel.send(`Челик был замьючен... но его ЛС закрыто. Мьют на ${mutetime}`)
-    .then(message => {
-    message.delete(5000)})
   }
 
     await(tomute.addRole(muterole.id));
