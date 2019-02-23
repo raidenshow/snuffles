@@ -72,7 +72,7 @@ bot.on("message", async message => {
   }
 
 
-  if(command === "purge") {
+  if(cmd === prefix + "purge") {
     const deleteCount = parseInt(args[0], 10);
 
     if(!deleteCount || deleteCount < 2 || deleteCount > 100)
