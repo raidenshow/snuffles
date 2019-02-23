@@ -96,7 +96,6 @@ bot.on("message", async message => {
   }
 
     if(cmd === prefix + "мут") {
-
       if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
         return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
