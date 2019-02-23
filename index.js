@@ -147,6 +147,7 @@ if(cmd === prefix + "размут") {
       let muted = message.guild.roles.find(r => r.name === "muted");
       if(!User.roles.has(muted.id)) return message.reply("Челик и так не замьючен.");
       await(User.removeRole(muted.id));
+      message.channel.send(`${tomute} был замьючен(а) на ${mutetime}`)
 }
 
 
