@@ -24,7 +24,7 @@ bot.on("message", async message => {
   }
 
   if(cmd === "say"){
-    if(!message.member.roles.some(r=>[modRoles].includes(r.name)) )
+    if(!message.member.roles.some(r=> modRoles.includes(r.name)) )
       return message.reply("Сорян, но ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
     const sayMessage = args.join(" ");
