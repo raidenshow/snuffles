@@ -84,7 +84,7 @@ bot.on("message", async message => {
 
     message.reply(`${deleteCount} сообщений удалено, сэр... мэм...сэрмэм?!`)
      .then(message => {
-     msg.delete(5000)});
+     message.delete(5000)});
 
     return;
   }
