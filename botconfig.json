@@ -3,5 +3,6 @@
   "prefix": "!",
   "modRoles": ["Администратор", "Модератор", "Рэйден"],
   "logChannel": "log",
-  "bannedLinks": ["discord.gg", ".gg/", ".gg /", ". gg /", ". gg/", "discord .gg /", "discord.gg /", "discord .gg/", "discord .gg", "discord . gg", "discord. gg", "discord gg", "discordgg", "discord gg /", "https://", "http://", "www."]
+  "bannedLinks": ["discord.gg", ".gg/", ".gg /", ". gg /", ". gg/", "discord .gg /", "discord.gg /", "discord .gg/", "discord .gg", "discord . gg", "discord. gg", "discord gg", "discordgg", "discord gg /", "https://", "http://", "www."],
+  "hiChannel": "542158843392688138"
 }

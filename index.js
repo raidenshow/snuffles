@@ -9,11 +9,19 @@ const ms = require("ms");
 
 
 const bannedLinks = botconfig.bannedLinks
+const hiChannel = botconfig.hiChannel
 
 bot.on("ready", async () => {
   console.log('Бот онлайн!');
 });
 
+bot.on('guildMemberAdd', member => {
+    member.guild.channels.get(hiChannel).send('**' + member.user.username + '** теперь с нами! Поприветствуем!');
+});
+
+bot.on('guildMemberRemove', member => {
+    member.guild.channels.get(hiChannel).send('**' + member.user.username + '** покинул нас... Земля тебе пухом, братишка...');
+});
 
 
 bot.on("message", async message => {
