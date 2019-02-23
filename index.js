@@ -140,6 +140,18 @@ try{
     }
 
 
+if(cmd === prefix + "размут") {
+
+  let User = message.mentions.members.first() || message.guild.members.get(args[0]);
+      if(!User) return message.reply("Нет такого челика...");
+      let reason = args[1];
+      console.log("Размут")
+      let muted = message.guild.roles.find(`name`, "muted");
+      if(!User.roles.has(muted.id)) return message.reply("Челик и так не замьючен.");
+      await(User.removeRole(muted.id));
+}
+
+
 
 });
 
