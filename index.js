@@ -135,7 +135,6 @@ message.channel.send(`${tomute} был замьючен(а) на ${mutetime}`)
     setTimeout(function(){
       tomute.removeRole(muterole.id);
     }, ms(mutetime));
-    message.channel.send(`${tomute} был размьючен.`)
     }
 
 
