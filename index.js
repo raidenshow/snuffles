@@ -79,7 +79,7 @@ bot.on("message", async message => {
       return message.reply("Укажи, сколько сообщений надо удалить (от 2 до 100)");
 
     const fetched = await message.channel.fetchMessages({limit: deleteCount});
-    message.channel.bulkDelete(fetched)
+    message.channel.bulkDelete(fetched + 1)
       .catch(error => message.reply(`Не могу удалить сообщения по причине:${error}`));
 
     message.reply(`${deleteCount} сообщений удалено, сэр... мэм...сэрмэм?!`)
