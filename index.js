@@ -39,7 +39,7 @@ bot.on("message", async message => {
 
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
     if(!member)
-      return message.reply("У нас такого челика нет...");
+      return message.reply("Кого кикать-то?");
     if(!member.kickable)
       return message.reply("Этого челика кикать нельзя...");
 
@@ -59,7 +59,7 @@ bot.on("message", async message => {
 
     let member = message.mentions.members.first();
     if(!member)
-      return message.reply("У нас такого челика нет...");
+      return message.reply("Кого банить-то?");
     if(!member.bannable)
       return message.reply("Этого челика банить нельзя...");
 
