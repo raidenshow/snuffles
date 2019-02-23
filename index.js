@@ -8,6 +8,8 @@ const logChannel= botconfig.logChannel;
 const ms = require("ms");
 
 
+var servers = {};
+
 const bannedLinks = botconfig.bannedLinks
 const hiChannel = botconfig.hiChannel
 
@@ -179,4 +181,4 @@ if(cmd === prefix + "размут") {
 
 });
 
-bot.login(botconfig.token);
+bot.login(botconfig.);
