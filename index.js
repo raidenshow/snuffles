@@ -100,6 +100,7 @@ bot.on("message", async message => {
         return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
       let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      if(!tomute) return message.reply("Кого мьютим-то?");
       if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика мьютить нельзя...");
       let reason = args.slice(2).join(" ");
       let muterole = message.guild.roles.find(r => r.name === "muted");
