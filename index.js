@@ -175,12 +175,7 @@ if(cmd === prefix + "размут") {
     } catch (e) {
         console.log(e);
     }
-
-
-
-
-
-}
+)}
 
 
 
