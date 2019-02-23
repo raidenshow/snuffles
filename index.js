@@ -102,7 +102,7 @@ bot.on("message", async message => {
       let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
       if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика мьютить нельзя...");
       let reason = args.slice(2).join(" ");
-      let muterole = message.guild.roles.find(`name`, "muted");
+      let muterole = message.guild.roles.find(r => r.name == "muted");
 
       if(!muterole){
     try{
@@ -147,7 +147,7 @@ if(cmd === prefix + "размут") {
       if(!User) return message.reply("Кого размьючиваем-то?");
       let reason = args[1];
       console.log("Размут")
-      let muted = message.guild.roles.find(`name`, "muted");
+      let muted = message.guild.roles.find(r => r.name == "muted");
       if(!User.roles.has(muted.id)) return message.reply("Челик и так не замьючен.");
       await(User.removeRole(muted.id));
 }
