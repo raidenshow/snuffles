@@ -7,6 +7,9 @@ const modRoles = botconfig.modRoles;
 const logChannel= botconfig.logChannel;
 const ms = require("ms");
 
+
+const bannedLinks = botconfig.bannedLinks
+
 bot.on("ready", async () => {
   console.log('Бот онлайн!');
 });
@@ -151,6 +154,15 @@ if(cmd === prefix + "размут") {
 }
 
 
+    try {
+        if (bannedLinks.some(word => message.content.toLowerCase().includes(word))) {
+            if(message.member.roles.some(r=>modRoles.includes(r.name)) ) return;
+            await message.delete();
+            await message.channel.send(`На сервере запрещено отправлять любые ссылки!`);
+        }
+    } catch (e) {
+        console.log(e);
+    }
 
 
 });

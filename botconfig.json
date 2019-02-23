@@ -2,5 +2,6 @@
   "token": "NTQ4MDMxMjA0MTA0OTk0ODM3.D1ITTw.etOmEyb1iQSAq-I50kSXP41wY4c",
   "prefix": "!",
   "modRoles": ["Администратор", "Модератор", "Рэйден"],
-  "logChannel": "log"
+  "logChannel": "log",
+  "bannedLinks": ["discord.gg", ".gg/", ".gg /", ". gg /", ". gg/", "discord .gg /", "discord.gg /", "discord .gg/", "discord .gg", "discord . gg", "discord. gg", "discord gg", "discordgg", "discord gg /", "https://", "http://", "www."]
 }
