@@ -4,6 +4,7 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 
 const modRoles = botconfig.modRoles;
+const logChannel= botconfig.logChannel;
 
 bot.on("ready", async () => {
   console.log('Бот онлайн!');
@@ -73,6 +74,10 @@ bot.on("message", async message => {
 
 
   if(cmd === prefix + "удалить") {
+    if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+      return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+
     const deleteCount = parseInt(args[0], 10);
 
     if(!deleteCount || deleteCount < 2 || deleteCount > 100)
@@ -88,6 +93,52 @@ bot.on("message", async message => {
 
     return;
   }
+
+    if(cmd === prefix + "мут"") {
+      if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+        return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+      let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика мьютить нельзя...");
+      let reason = args.slice(2).join(" ");
+      let muterole = message.guild.roles.find(`name`, "muted");
+
+      if(!muterole){
+    try{
+      muterole = await message.guild.createRole({
+        name: "muted",
+        color: "#000000",
+        permissions:[]
+      })
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+
+  let mutetime = args[1];
+if(!mutetime) return message.reply("Укажи время мьюта...");
+
+message.delete().catch(O_o=>{});
+
+try{
+    await tomute.send(`Чел, ты был замьючен на ${mutetime}. Не шали!)`)
+  }catch(e){
+    message.channel.send(`Челик был замьючен... но его ЛС закрыто. Мьют на ${mutetime}`)
+  }
+
+    await(tomute.addRole(muterole.id));
+
+    setTimeout(function(){
+      tomute.removeRole(muterole.id);
+    }, ms(mutetime));
+    }
+
 
 
 });
