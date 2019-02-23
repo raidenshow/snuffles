@@ -143,6 +143,10 @@ message.channel.send(`${tomute} был замьючен(а) на ${mutetime}`)
 
 if(cmd === prefix + "размут") {
 
+  if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+    return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+
   let User = message.mentions.members.first() || message.guild.members.get(args[0]);
       if(!User) return message.reply("Кого размьючиваем-то?");
       let reason = args[1];
