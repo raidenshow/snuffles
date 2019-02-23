@@ -151,28 +151,6 @@ if(cmd === prefix + "размут") {
 }
 
 
-// const bannedWords = [`discord.gg`, `.gg/`, `.gg /`, `. gg /`, `. gg/`, `discord .gg /`, `discord.gg /`, `discord .gg/`, `discord .gg`, `discord . gg`, `discord. gg`, `discord gg`, `discordgg`, `discord gg /`, 'https://', 'http://', 'www.']
-//    try {
-//        if (bannedWords.some(word => message.content.toLowerCase().includes(word))) {
-//            if(message.member.roles.some(r=>modRoles.includes(r.name)) ) return;
-//            if()
-//            await message.delete();
-//            await message.channel.send(`Не стоит отправлять сюда приглашения на сервера, бро...`);
-//        }
-//    } catch (e) {
-//        console.log(e);
-//    }
-
-
-let invites = await message.guild.fetchInvites();
-invites = invites.array();
-
-if(!message.content.invites) {
-  await message.delete();
-  await message.channel.send(`Не стоит отправлять сюда приглашения на сервера, бро...`);
-}
-
-
 
 
 });
