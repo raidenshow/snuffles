@@ -199,3 +199,5 @@ bot.on = async (client, message, args, ops) => {
 });
 
 bot.login(botconfig.token);
+
+///
