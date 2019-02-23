@@ -5,6 +5,7 @@ const bot = new Discord.Client();
 
 const modRoles = botconfig.modRoles;
 const logChannel= botconfig.logChannel;
+consy ms = require("ms");
 
 bot.on("ready", async () => {
   console.log('Бот онлайн!');
