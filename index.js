@@ -6,7 +6,7 @@ const bot = new Discord.Client();
 const modRoles = botconfig.modRoles;
 const logChannel= botconfig.logChannel;
 const ms = require("ms");
-const ytdl = require('ytdl-core');
+
 
 const bannedLinks = botconfig.bannedLinks
 const hiChannel = botconfig.hiChannel
@@ -175,9 +175,6 @@ if(cmd === prefix + "размут") {
     } catch (e) {
         console.log(e);
     }
-)}
-
-
 
 
 });
