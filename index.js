@@ -83,9 +83,8 @@ bot.on("message", async message => {
       .catch(error => message.reply(`Не могу удалить сообщения по причине:${error}`));
 
     message.reply(`${deleteCount} сообщений удалено, сэр... мэм...сэрмэм?!`);
-
-    .then(message => {
-    msg.delete(5000)});
+     .then(message => {
+     msg.delete(5000)});
 
     return;
   }
