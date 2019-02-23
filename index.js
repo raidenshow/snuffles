@@ -181,4 +181,4 @@ if(cmd === prefix + "размут") {
 
 });
 
-bot.login(botconfig.);
+bot.login(process.env.BOT_TOKEN);
