@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.0.17",
     "discord.js": "^11.4.2",
     "ms": "^2.1.1"
   }
