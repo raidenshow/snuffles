@@ -3,10 +3,10 @@ const Discord = require("discord.js");
 
 const bot = new Discord.Client();
 
-
+const modRoles = botconfig.modRoles;
 
 bot.on("ready", async () => {
-  console.log('${bot.user.username} is online!');
+  console.log('Бот онлайн!');
 });
 
 
@@ -22,6 +22,16 @@ bot.on("message", async message => {
   if(cmd === prefix + "пинг"){
     return message.channel.send("понг!");
   }
+
+  if(cmd === "say"){
+    if(!message.member.roles.some(r=>[modRoles].includes(r.name)) )
+      return message.reply("Сорян, но ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+    const sayMessage = args.join(" ");
+    message.delete().catch(O_o=>{});
+    message.channel.send(sayMessage);
+  }
+
 
 });
 
