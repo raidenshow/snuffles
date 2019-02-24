@@ -44,7 +44,10 @@ bot.on("message", async message => {
     if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
       return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
-    resetBot(message.channel);
+      let wrongTOKEN = "off"
+
+      set.BOT_TOKEN = wrongTOKEN;
+
     }
 
 
