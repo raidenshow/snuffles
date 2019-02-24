@@ -34,6 +34,19 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if(cmd === prefix + "офф"){
+    if(message.author.id != "536265653695414332") return message.reply("Ты не можешь юзать эту команду...")
+
+    try {
+      await message.channel.send("Бот вырублен...")
+      process.exit()
+    } catch(e) {
+      message.channel.send(`ERROR: ${e.message}`)
+  }
+
+
+
+
   if(cmd === prefix + "пинг"){
     return message.channel.send("понг!");
   }
