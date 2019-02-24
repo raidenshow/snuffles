@@ -41,8 +41,9 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
 
   if(cmd === prefix + "офф"){
-    if(message.author.id != "536265653695414332") return message.reply("Ты не можешь юзать эту команду...")
-    if(message.author.id = "536265653695414332"){
+    if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+      return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+      
     resetBot(message.channel);
             break;
 
