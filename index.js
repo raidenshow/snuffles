@@ -45,7 +45,6 @@ bot.on("message", async message => {
       return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
     resetBot(message.channel);
-            break;
     }
 
 
