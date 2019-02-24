@@ -43,7 +43,7 @@ bot.on("message", async message => {
     } catch(e) {
       message.channel.send(`ERROR: ${e.message}`)
   }
-
+}
 
 
 
