@@ -48,8 +48,6 @@ bot.on("message", async message => {
     }
 
 
-  }
-
 
   if(cmd === prefix + "пинг"){
     return message.channel.send("понг!");
