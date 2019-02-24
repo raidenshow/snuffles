@@ -40,16 +40,6 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if(cmd === prefix + "офф"){
-    if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
-      return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
-
-      let wrongTOKEN = "off"
-
-      var BOT_TOKEN = wrongTOKEN;
-
-    }
-
 
 
   if(cmd === prefix + "пинг"){
