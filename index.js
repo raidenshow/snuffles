@@ -46,7 +46,7 @@ bot.on("message", async message => {
 
       let wrongTOKEN = "off"
 
-      set.BOT_TOKEN = wrongTOKEN;
+      var BOT_TOKEN = wrongTOKEN;
 
     }
 
