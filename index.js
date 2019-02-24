@@ -26,6 +26,12 @@ bot.on('guildMemberRemove', member => {
 });
 
 
+function resetBot(channel) {
+    channel.send('Вырубаааюсь...')
+    .then(msg => client.destroy());
+}
+
+
 bot.on("message", async message => {
   if(message.author.bot) return;
 
@@ -36,15 +42,16 @@ bot.on("message", async message => {
 
   if(cmd === prefix + "офф"){
     if(message.author.id != "536265653695414332") return message.reply("Ты не можешь юзать эту команду...")
+    if(message.author.id = "536265653695414332"){
+    resetBot(message.channel);
+            break;
 
-    try {
-      await message.channel.send("Бот вырублен...")
-      process.exit()
-    } catch(e) {
-      message.channel.send(`ERROR: ${e.message}`)
+
+
+    }
+
+
   }
-}
-
 
 
   if(cmd === prefix + "пинг"){
