@@ -60,7 +60,7 @@ bot.on("message", async message => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
 
-
+});
 // if(cmd === prefix + "пинг"){
 //  return message.channel.send("понг!");
 //  }
