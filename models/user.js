@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const warnSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
 userID: String,
 displayName: String,
 warns: Number,
