@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Warned User", `<@${wUser.id}>`)
   .addField("Warned In", message.channel)
   .addField("Number of Warnings", warns[wUser.id].warns)
-  .addField("Reason", reason);
+  .addField("Reason", wreason);
 
   let warnchannel = message.guild.channels.find(`name`, "log");
   if(!warnchannel) return message.reply("Не могу найти лог чат");
