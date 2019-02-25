@@ -2,7 +2,16 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 
 const bot = new Discord.Client();
+
+const modRoles = botconfig.modRoles;
+const logChannel= botconfig.logChannel;
+const bannedLinks = botconfig.bannedLinks
+const hiChannel = botconfig.hiChannel
+const ms = require("ms");
+
+
 const mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 mongoose.connect(process.env.DATA_LOGINS, {
   useNewUrlParser: true
@@ -14,15 +23,21 @@ mongoose.connect(process.env.DATA_LOGINS, {
   }
 });
 
-const modRoles = botconfig.modRoles;
-const logChannel= botconfig.logChannel;
-const ms = require("ms");
+
+var warnSchema = new mongoose.Schema({
+  userID: String,
+  userNickname: String,
+  warnReason: String,
+  moderatorID: String,
+  moderatorNickname: String,
+  when: Date,
+  channeID: String,
+  channelName: String,
+  warnedVia: String
+});
 
 
-var servers = {};
 
-const bannedLinks = botconfig.bannedLinks
-const hiChannel = botconfig.hiChannel
 
 bot.on("ready", async () => {
   console.log('Бот онлайн!');
@@ -35,12 +50,6 @@ bot.on('guildMemberAdd', member => {
 bot.on('guildMemberRemove', member => {
     member.guild.channels.get(hiChannel).send('**' + member.user.username + '** покинул нас... Земля тебе пухом, братишка...');
 });
-
-
-function resetBot(channel) {
-    channel.send('Вырубаааюсь...')
-    .then(msg => client.destroy());
-}
 
 
 bot.on("message", async message => {
