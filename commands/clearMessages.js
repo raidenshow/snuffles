@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
 
 
       var deleteCount = parseInt(args[0], 10);
-      var deletedCount = deleteCount + 1;
+      deletedCount = deleteCount + 1;
       if(!deleteCount || deleteCount < 1 || deleteCount > 100)
         return message.reply("Укажи, сколько сообщений надо удалить (от 1 до 100)");
 
