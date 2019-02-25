@@ -74,21 +74,6 @@ module.exports.run = async (bot, message, args) => {
                   });
                   var newWarns = foundObj.warns;
 
-                  let warnEmbed = new Discord.RichEmbed()
-                  .setDescription("Warns")
-                  .setAuthor(message.author.username)
-                  .setColor("#fc6400")
-                  .addField("Warned User", `<@${wUser.id}>`)
-                  .addField("Warned In", message.channel)
-                  .addField("Number of Warnings", foundObj.warns)
-                  .addField("Reason", wreason);
-
-
-  let warnchannel = message.guild.channels.find(channel => channel.name === "log");
-  if(!warnchannel) return message.reply("Не могу найти лог чат");
-
-  warnchannel.send(warnEmbed);
-
   if(newWarns == 1){
         message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
       }
@@ -133,6 +118,20 @@ module.exports.run = async (bot, message, args) => {
         }
       }
     }
+    let warnEmbed = new Discord.RichEmbed()
+    .setDescription("Warns")
+    .setAuthor(message.author.username)
+    .setColor("#fc6400")
+    .addField("Warned User", `<@${wUser.id}>`)
+    .addField("Warned In", message.channel)
+    .addField("Number of Warnings", foundObj.warns)
+    .addField("Reason", wreason);
+
+
+let warnchannel = message.guild.channels.find(channel => channel.name === "log");
+if(!warnchannel) return message.reply("Не могу найти лог чат");
+
+warnchannel.send(warnEmbed);
   }
   });
         }
