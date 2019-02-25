@@ -5,12 +5,12 @@ const warnSchema = mongoose.Schema({
   userID: Number,
   userNickname: String,
   warnReason: String,
-  moderatorID: String,
+  moderatorID: Number,
   moderatorNickname: String,
   when: String,
-  channeID: String,
+  channeID: Number,
   channelName: String,
-  numberWarnings: String
+  numberWarnings: Number
 });
 
 module.exports = mongoose.model("Warn", warnSchema);
