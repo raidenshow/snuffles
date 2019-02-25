@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Warn = require("../models/warn.js");
 const fs = require("fs");
 const ms = require("ms");
-var warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 const mongoose = require("mongoose");
 mongoose.Promise = Promise
