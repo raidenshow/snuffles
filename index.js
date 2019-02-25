@@ -23,10 +23,6 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 
-
-
-});
-
 const modRoles = botconfig.modRoles;
 const logChannel= botconfig.logChannel;
 const bannedLinks = botconfig.bannedLinks
