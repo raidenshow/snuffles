@@ -9,6 +9,8 @@ const bannedLinks = botconfig.bannedLinks
 const hiChannel = botconfig.hiChannel
 const ms = require("ms");
 const isUrl = require("is-url");
+const YTDL = require("ytdl-core");
+const ffmpeg = require('@ffmpeg-installer/ffmpeg');
 var servers = {};
 
 fs.readdir("./commands/", (err, files) => {
