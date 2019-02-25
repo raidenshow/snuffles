@@ -1,5 +1,29 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
+const fs = require("fs");
+bot.commands = new Discord.Collection();
+
+
+fs.readdir("./commands/", (err, files) => {
+
+  if(err) console.log(err);
+
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.lenght <= 0){
+    console.log("Не могу найти комманды.");
+    return;
+  }
+
+  jsfile.forEach((f, i)) =>{
+    let props = require(`.commands/${f}`);
+    console.log(`${f} loaded!`);
+    bot.commands.set(props.help.name, props);
+  });
+
+
+
+
+});
 
 const bot = new Discord.Client();
 
@@ -33,11 +57,13 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  let commandfile = bot.commands.get(cmd.slice(prefix.lenght));
+  if(commandfile) commandfile.run(bot,message,args);
 
 
-  if(cmd === prefix + "пинг"){
-    return message.channel.send("понг!");
-  }
+// if(cmd === prefix + "пинг"){
+//  return message.channel.send("понг!");
+//  }
 
   if(cmd === prefix + "say"){
     if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
