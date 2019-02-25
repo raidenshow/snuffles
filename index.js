@@ -21,12 +21,13 @@ fs.readdir("./commands/", (err, files) => {
   }
 
 
-
-
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`);
     console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
+    if (props.help && props.help.name) {
+      bot.commands.set(props.help.name, props);
+    } else {
+      console.error(`file ${f} does not have .help or .help.name property!`);
   });
 
 });
@@ -51,9 +52,6 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-
-  let scanuser = bot.commands.get("scanuser");
-  scanuser.run(bot, message, args);
 
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
