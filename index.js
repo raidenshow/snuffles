@@ -20,7 +20,6 @@ fs.readdir("./commands/", (err, files) => {
     return;
   }
 
-
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`);
     console.log(`${f} loaded!`);
@@ -28,8 +27,8 @@ fs.readdir("./commands/", (err, files) => {
       bot.commands.set(props.help.name, props);
     } else {
       console.error(`file ${f} does not have .help or .help.name property!`);
-  });
-
+  }
+});
 });
 
 bot.on("ready", async () => {
