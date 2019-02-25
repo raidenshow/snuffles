@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const modRoles = botconfig.modRoles;
 
 module.exports.run = async (bot, message, args) => {
   if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
