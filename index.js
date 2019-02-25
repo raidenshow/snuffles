@@ -1,8 +1,14 @@
-const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
+const botconfig = require("./botconfig.json");
+const modRoles = botconfig.modRoles;
+const logChannel= botconfig.logChannel;
+const bannedLinks = botconfig.bannedLinks
+const hiChannel = botconfig.hiChannel
+const ms = require("ms");
+
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -21,16 +27,6 @@ fs.readdir("./commands/", (err, files) => {
   });
 
 });
-
-
-const modRoles = botconfig.modRoles;
-const logChannel= botconfig.logChannel;
-const bannedLinks = botconfig.bannedLinks
-const hiChannel = botconfig.hiChannel
-const ms = require("ms");
-
-
-
 
 bot.on("ready", async () => {
   console.log('Бот онлайн!');
@@ -60,5 +56,3 @@ bot.on("message", async message => {
 
 
 bot.login(process.env.BOT_TOKEN);
-
-//
