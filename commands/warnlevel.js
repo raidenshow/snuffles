@@ -19,6 +19,15 @@ if(!wUser) return message.reply("Нет такого челика :(");
         if (!foundObj)
           console.log("Something stange happend");
         else {
+          if (foundObj.warns == null || typeof foundObj.warns == "undefined")
+           foundObj.warns = 0;
+           foundObj.save()
+           .then(item => {
+             console.log('Warn 0 to"' + message.member.displayName);
+           })
+           .catch(err => {
+             console.log("Error on database save: " + err);
+           });
           var warnings = foundObj.warns;
           console.log(warnings);
           message.reply(`<@${wUser.id}> получил ${warnings} предупреждений.`);

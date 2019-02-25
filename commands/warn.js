@@ -67,7 +67,7 @@ module.exports.run = async (bot, message, args) => {
                   foundObj.warns = foundObj.warns + 1;
                   foundObj.save()
                   .then(item => {
-                    console.log('Warn from"' + message.member.displayName);
+                    console.log('Warn to"' + message.member.displayName);
                   })
                   .catch(err => {
                     console.log("Error on database save: " + err);
