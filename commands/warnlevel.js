@@ -25,7 +25,7 @@ let wUser = message.guild.member(message.mentions.users.first()) || message.guil
 
        }
       }
-    }
+    )}
 }
 
 module.exports.help = {
