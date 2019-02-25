@@ -7,10 +7,9 @@ const warnSchema = mongoose.Schema({
   warnReason: String,
   moderatorID: Number,
   moderatorNickname: String,
-  when: String,
-  channeID: Number,
-  channelName: String,
-  numberWarnings: Number
+  when: Date,
+  channelID: Number,
+  channelName: String
 });
 
 module.exports = mongoose.model("Warn", warnSchema);

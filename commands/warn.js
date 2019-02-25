@@ -1,33 +1,83 @@
 const Discord = require("discord.js");
-const Warn = require("../models/warn.js");
 const fs = require("fs");
 const ms = require("ms");
-let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
-
 const mongoose = require("mongoose");
-mongoose.Promise = global.Promise;mongoose.connect(process.env.DATA_LOGINS, { useNewUrlParser: true });
 
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.DATA_LOGINS);
+var Warn = require('./../models/warn.js');
+var User = require('./../models/user.js');
 
 
 module.exports.run = async (bot, message, args) => {
 
   //!warn @daeshan <reason>
-  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Так могут только модеры и админы :)");
+  if(!message.member.hasPermission("MANAGE_MEMBERS"))
+  return message.reply("Так могут только модеры и админы :)");
 
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if(!wUser) return message.reply("Нет такого челика...");
-  if(wUser.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика варнить нельзя...");
+  if(wUser.hasPermission("MANAGE_MESSAGES"))
+  return message.reply("Этого челика варнить нельзя...");
   let wreason = args.join(" ").slice(22);
+  if (!wreason)
+  return message.reply("ты забыл указать причину!(пидор)")
 
-  if(!warns[wUser.id]) warns[wUser.id] = {
-    warns: 0
-  };
+  var myData = new Warn({
+      userID: wUser.id,
+      userNickname: wUser.displayName,
+      warnReason: wreason,
+      moderatorID: message.member.id,
+      moderatorNickname: message.member.displayName,
+      when: Date.now(),
+      channelID: message.channel.id,
+      channelName: message.channel.name
+    });
+				myData.save()
+				.then(item => {
+					console.log('Warn from"' + message.member.displayName);
+				})
+				.catch(err => {
+					console.log("Error on database save: " + err);
+				});
 
-  warns[wUser.id].warns++;
+        var user_obj = User.findOne({
+        		userID: wUser.id
+        	}, function (err, foundObj) {
+        		if (err)
+        			console.log("Error on database findOne: " + err);
+        		else {
+        			if (foundObj === null){
+                  var myData = new Warn({
+                    userID: wUser.id,
+                    displayName: wUser.displayName,
+                    warns: 1
+                  });
+                  myData.save()
+          				.then(item => {
+          					console.log('Warn from"' + message.member.displayName);
+          				})
+          				.catch(err => {
+          					console.log("Error on database save: " + err);
+          				});
+                }else{
+                  if (foundObj.warns == null || typeof foundObj.warns == "undefined")
+                   foundObj.warns = 1;
+                  else
+                  foundObj.warns = foundObj.warns + 1;
+                  foundObj.save()
+                  .then(item => {
+                    console.log('Warn from"' + message.member.displayName);
+                  })
+                  .catch(err => {
+                    console.log("Error on database save: " + err);
+                  });
+                  var newWarns = foundObj.warns;
 
-  fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
-    if (err) console.log(err)
-  });
+                }
+              }
+            });
+
 
   let warnEmbed = new Discord.RichEmbed()
   .setDescription("Warns")
@@ -43,40 +93,46 @@ module.exports.run = async (bot, message, args) => {
 
   warnchannel.send(warnEmbed);
 
-  // if(warns[wUser.id].warns == 5){
-  //   let muterole = message.guild.roles.find(`name`, "muted");
-  //   if(!muterole) return message.reply("Нет роли muted");
-  //
-  //   let mutetime = "10s";
-  //   await(wUser.addRole(muterole.id));
-  //   message.channel.send(`<@${wUser.id}> был замьючен.`);
-  //
-  //   setTimeout(function(){
-  //     wUser.removeRole(muterole.id)
-  //     message.reply(`<@${wUser.id}> был размьючен.`)
-  //   }, ms(mutetime))
-  // }
-  // if(warns[wUser.id].warns == 3){
-  //   message.guild.member(wUser).ban(reason);
-  //   message.reply(`<@${wUser.id}> has been banned.`)
-  // }
+  if(newWarns == 1){
+        message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
+      }
+      else{
+        switch (newWarns) {
+          case 2:
+            mutetime = "5m";
+            break;
+          case 3:
+            mutetime = "10m";
+          case 4:
+            mutetime = "20m";
+          default:
+            mutetime = "30m";
+        }
+        var user_obj = User.findOne({
+            userID: wUser.id
+          }, function (err, foundObj) {
 
-const warn = new Warn({
-  _id: mongoose.Types.ObjectId(),
-  userID: wUser.id,
-  username: wUser.user.username,
-  warnReason: wreason,
-  moderatorNickname: message.author.username,
-  when: message.createdAt,
-  channelName: message.channel,
-  numberWarnings: warns[wUser.id].warns
-});
+          var timestamp = new Date().getTime();
+          var mutedUntil = new Date();
 
-warn.save()
-.then(result => console.log(result))
-.cath(err => console.log(err));
+          mutedUntil.setTime(timestamp + ms(mutetime));
 
-message.reply("Варн засчитан.")
+          foundObj.mutedUntil = mutedUntil;
+          foundObj.save(function(err, updatedObj){
+            if(err)
+              console.log(err);
+            });
+          });
+          wUser.addRole(muterole.id);
+          message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
+
+          setTimeout(function(){
+            if(wUser.roles.has(muterole.id)){
+              wUser.removeRole(muterole.id);
+              warnchannel.send(`<@${wUser.id}> был размучен!`);
+            }
+          }, ms(mutetime));
+        }
 }
 
 module.exports.help = {
