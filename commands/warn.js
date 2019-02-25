@@ -5,7 +5,7 @@ const ms = require("ms");
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 const mongoose = require("mongoose");
-
+mongoose.Promise = Promise
 module.exports.run = async (bot, message, args) => {
 
   //!warn @daeshan <reason>
