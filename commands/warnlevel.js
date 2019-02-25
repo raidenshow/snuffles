@@ -2,14 +2,14 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
-var Warn = require('./../models/warn.js');
+var Warn = require('./models/warn.js');
 
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;mongoose.connect(process.env.DATA_LOGINS, { useNewUrlParser: true });
 
 module.exports.run = async (bot, message, args) => {
 let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!wUser) return message.reply("Нет такого челика :(");
+if(!wUser) return message.reply("Нет такого челика :(");
 
   var user_obj = Warn.findOne({
       userID: wUser.id
