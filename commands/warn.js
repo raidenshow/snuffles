@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   //!warn @daeshan <reason>
   if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Так могут только модеры и админы :)");
   mongoose.connect('mongodb+srv://raidenshow:Sosipisos228@rraidenterritory-nmzid.mongodb.net/Warns',  { useNewUrlParser: true });
-  let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
+  let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if(!wUser) return message.reply("Нет такого челика...");
   if(wUser.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика варнить нельзя...");
   let wreason = args.join(" ").slice(22);
