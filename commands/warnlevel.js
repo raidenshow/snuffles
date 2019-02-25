@@ -4,10 +4,9 @@ const ms = require("ms");
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 const mongoose = require("mongoose");
-mongoose.Promise = Promise
+mongoose.Promise = global.Promise;mongoose.connect(process.env.DATA_LOGINS, { useNewUrlParser: true });
 
 module.exports.run = async (bot, message, args) => {
-mongoose.connect(process.env.DATA_LOGINS, { useNewUrlParser: true });
 let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 
   if(!warns[wUser.id]) warns[wUser.id] = {

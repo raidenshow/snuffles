@@ -5,12 +5,15 @@ const ms = require("ms");
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 const mongoose = require("mongoose");
-mongoose.Promise = Promise
+mongoose.Promise = global.Promise;mongoose.connect(process.env.DATA_LOGINS, { useNewUrlParser: true });
+
+
+
 module.exports.run = async (bot, message, args) => {
 
   //!warn @daeshan <reason>
   if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Так могут только модеры и админы :)");
-  mongoose.connect(process.env.DATA_LOGINS, { useNewUrlParser: true });
+
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if(!wUser) return message.reply("Нет такого челика...");
   if(wUser.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика варнить нельзя...");
