@@ -74,6 +74,14 @@ module.exports.run = async (bot, message, args) => {
                   });
                   var newWarns = foundObj.warns;
 
+                  let warnEmbed = new Discord.RichEmbed()
+                  .setDescription("Warns")
+                  .setAuthor(message.author.username)
+                  .setColor("#fc6400")
+                  .addField("Warned User", `<@${wUser.id}>`)
+                  .addField("Warned In", message.channel)
+                  .addField("Number of Warnings", foundObj.warns)
+                  .addField("Reason", wreason);
                 }
               }
             });
