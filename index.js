@@ -2,6 +2,17 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 
 const bot = new Discord.Client();
+const mongoose = require("mongoose");
+
+mongoose.connect(process.env.DATA_LOGINS, {
+  useNewUrlParser: true
+}, function(error){
+  if(error){
+    console.log(error);
+  }else{
+    console.log("Connected to the database");
+  }
+});
 
 const modRoles = botconfig.modRoles;
 const logChannel= botconfig.logChannel;
