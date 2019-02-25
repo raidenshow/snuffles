@@ -9,11 +9,11 @@ const mongoose = require("mongoose");
 module.exports.run = async (bot, message, args) => {
 
   //!warn @daeshan <reason>
-  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("No can do pal!");
+  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Так могут только модеры и админы :)");
   mongoose.connect('mongoose://localhost/Warns');
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-  if(!wUser) return message.reply("Couldn't find them yo");
-  if(wUser.hasPermission("MANAGE_MESSAGES")) return message.reply("They waaaay too kewl");
+  if(!wUser) return message.reply("Нет такого челика...");
+  if(wUser.hasPermission("MANAGE_MESSAGES")) return message.reply("Этого челика варнить нельзя...");
   let wreason = args.join(" ").slice(22);
 
   if(!warns[wUser.id]) warns[wUser.id] = {
@@ -35,28 +35,28 @@ module.exports.run = async (bot, message, args) => {
   .addField("Number of Warnings", warns[wUser.id].warns)
   .addField("Reason", reason);
 
-  let warnchannel = message.guild.channels.find(`name`, "incidents");
-  if(!warnchannel) return message.reply("Couldn't find channel");
+  let warnchannel = message.guild.channels.find(`name`, "log");
+  if(!warnchannel) return message.reply("Не могу найти лог чат");
 
   warnchannel.send(warnEmbed);
 
-  if(warns[wUser.id].warns == 2){
-    let muterole = message.guild.roles.find(`name`, "muted");
-    if(!muterole) return message.reply("You should create that role dude.");
-
-    let mutetime = "10s";
-    await(wUser.addRole(muterole.id));
-    message.channel.send(`<@${wUser.id}> has been temporarily muted`);
-
-    setTimeout(function(){
-      wUser.removeRole(muterole.id)
-      message.reply(`<@${wUser.id}> has been unmuted.`)
-    }, ms(mutetime))
-  }
-  if(warns[wUser.id].warns == 3){
-    message.guild.member(wUser).ban(reason);
-    message.reply(`<@${wUser.id}> has been banned.`)
-  }
+  // if(warns[wUser.id].warns == 5){
+  //   let muterole = message.guild.roles.find(`name`, "muted");
+  //   if(!muterole) return message.reply("Нет роли muted");
+  //
+  //   let mutetime = "10s";
+  //   await(wUser.addRole(muterole.id));
+  //   message.channel.send(`<@${wUser.id}> был замьючен.`);
+  //
+  //   setTimeout(function(){
+  //     wUser.removeRole(muterole.id)
+  //     message.reply(`<@${wUser.id}> был размьючен.`)
+  //   }, ms(mutetime))
+  // }
+  // if(warns[wUser.id].warns == 3){
+  //   message.guild.member(wUser).ban(reason);
+  //   message.reply(`<@${wUser.id}> has been banned.`)
+  // }
 
 const warn = new Warn({
   _id: mongoose.Types.ObjectId(),
