@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const warnSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  userID: String,
+  userID: Number,
   userNickname: String,
   warnReason: String,
   moderatorID: String,
