@@ -65,7 +65,8 @@ const warn = new Warn({
   warnReason: wreason,
   moderatorNickname: message.author.username,
   when: message.createdAt,
-  channelName: message.channel
+  channelName: message.channel,
+  numberWarnings: warns[wUser.id].warns
 });
 
 warn.save()

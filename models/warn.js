@@ -10,7 +10,6 @@ const warnSchema = mongoose.Schema({
   when: String,
   channeID: String,
   channelName: String,
-  warnedVia: String
 });
 
 module.exports = mongoose.model("Warn", warnSchema);
