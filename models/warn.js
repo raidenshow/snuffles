@@ -10,6 +10,7 @@ const warnSchema = mongoose.Schema({
   when: String,
   channeID: String,
   channelName: String,
+  numberWarnings: warns[wUser.id].warns
 });
 
 module.exports = mongoose.model("Warn", warnSchema);
