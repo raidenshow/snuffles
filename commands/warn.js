@@ -106,6 +106,7 @@ module.exports.run = async (bot, message, args) => {
         }
       }
     }
+  }
   });
 
         var user_obj = User.findOne({
