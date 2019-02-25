@@ -17,11 +17,11 @@ module.exports.run = async (bot, message, args) => {
 
 
       var deleteCount = parseInt(args[0], 10);
-      deletedCount = deleteCount + 1;
+      var deletedCountup = deleteCount + 1;
       if(!deleteCount || deleteCount < 1 || deleteCount > 100)
         return message.reply("Укажи, сколько сообщений надо удалить (от 1 до 100)");
 
-      const fetched = await message.channel.fetchMessages({limit: deleteCount});
+      const fetched = await message.channel.fetchMessages({limit: deletedCountup});
       message.channel.bulkDelete(fetched)
         .catch(error => message.reply(`Не могу удалить сообщения по причине:${error}`));
 
