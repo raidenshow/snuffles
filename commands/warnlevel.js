@@ -17,7 +17,7 @@ if(!wUser) return message.reply("Нет такого челика :(");
         console.log("Error on database findOne: " + err);
       else {
         if (!foundObj)
-          console.log("Something stange happend");
+          console.log("Something strange happend");
         else {
           if (foundObj.warns == null || typeof foundObj.warns == "undefined")
            foundObj.warns = 0;

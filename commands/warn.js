@@ -48,7 +48,7 @@ module.exports.run = async (bot, message, args) => {
         			console.log("Error on database findOne: " + err);
         		else {
         			if (foundObj === null){
-                  var myData = new Warn({
+                  var myData = new User({
                     userID: wUser.id,
                     displayName: wUser.displayName,
                     warns: 1
