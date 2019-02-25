@@ -16,10 +16,10 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
 
 
-      const deleteCount = parseInt(args[0], 10);
-
-      if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-        return message.reply("Укажи, сколько сообщений надо удалить (от 2 до 100)");
+      var deleteCount = parseInt(args[0], 10);
+      var deletedCount = deleteCount + 1;
+      if(!deleteCount || deleteCount < 1 || deleteCount > 100)
+        return message.reply("Укажи, сколько сообщений надо удалить (от 1 до 100)");
 
       const fetched = await message.channel.fetchMessages({limit: deleteCount});
       message.channel.bulkDelete(fetched)
