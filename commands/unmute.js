@@ -18,17 +18,6 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(`${User} размьючен.`)
   }
 
-
-      try {
-          if (bannedLinks.some(word => message.content.toLowerCase().includes(word))) {
-              if(message.member.roles.some(r=>modRoles.includes(r.name)) ) return;
-              await message.delete();
-              await message.channel.send(`На сервере запрещено отправлять любые ссылки!`);
-          }
-      } catch (e) {
-          console.log(e);
-}
-
 module.exports.help = {
   name: "размут"
 }
