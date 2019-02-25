@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Number of Warnings", warns[wUser.id].warns)
   .addField("Reason", wreason);
 
-  let warnchannel = message.guild.channels.find(channel => channelName === "log");
+  let warnchannel = message.guild.channels.find(channel => channel.name === "log");
   if(!warnchannel) return message.reply("Не могу найти лог чат");
 
   warnchannel.send(warnEmbed);
