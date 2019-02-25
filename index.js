@@ -8,7 +8,7 @@ const logChannel= botconfig.logChannel;
 const bannedLinks = botconfig.bannedLinks
 const hiChannel = botconfig.hiChannel
 const ms = require("ms");
-
+const isUrl = require("is-url")
 
 fs.readdir("./commands/", (err, files) => {
 
