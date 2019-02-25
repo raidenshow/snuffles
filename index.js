@@ -52,6 +52,50 @@ bot.on("message", async message => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
 
+
+  //////music
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  var args = messageArray.slice(1);
+
+  if((message.content.charAt(0) === prefix && cmd == prefix+"плей")){
+    let link = args[0];
+    if(!link)
+      return message.reply("Введи ссылкуна трек");
+    if(isUrl(link) !== true)
+      return message.reply("Это не ссылка на трек :(");
+    if(!message.member.voiceChannel)
+      return message.reply("Войди в голосовой канал!");
+    if(!servers[message.guild.id]) servers[message.guild.id] = {
+      queue: []
+    };
+    var server = servers[message.guild.id];
+    server.queue.push(args[0]);
+    console.log("Queue is: " + server.queue);
+    if(!message.guild.voiceConnection)
+      message.member.voiceChannel.join().then(function(connection) {
+      play(connection, message);
+    });
+  }
+
+  if(message.content == prefix + "skip"){
+
+    var server = servers[message.guild.id];
+
+    if(server.dispatcher)
+      server.dispatcher.end();
+  }
+
+  if(message.content == prefix + "disconnect"){
+
+    var server = servers[message.guild.id];
+
+    if(message.guild.voiceConnection)
+      message.guild.voiceConnection.disconnect();
+  }
+  //////
+
+  
 });
 
 
