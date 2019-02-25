@@ -44,7 +44,6 @@ Warns.create({
   warnReason: 'String',
   moderatorID: 'String',
   moderatorNickname: 'String',
-  when: 'Date',
   channeID: 'String',
   channelName: 'String',
   warnedVia: 'String'
