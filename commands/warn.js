@@ -82,19 +82,7 @@ module.exports.run = async (bot, message, args) => {
                   .addField("Warned In", message.channel)
                   .addField("Number of Warnings", foundObj.warns)
                   .addField("Reason", wreason);
-                }
-              }
-            });
 
-
-  let warnEmbed = new Discord.RichEmbed()
-  .setDescription("Warns")
-  .setAuthor(message.author.username)
-  .setColor("#fc6400")
-  .addField("Warned User", `<@${wUser.id}>`)
-  .addField("Warned In", message.channel)
-  .addField("Number of Warnings", warns[wUser.id].warns)
-  .addField("Reason", wreason);
 
   let warnchannel = message.guild.channels.find(channel => channel.name === "log");
   if(!warnchannel) return message.reply("Не могу найти лог чат");
@@ -116,6 +104,10 @@ module.exports.run = async (bot, message, args) => {
           default:
             mutetime = "30m";
         }
+      }
+    }
+  });
+
         var user_obj = User.findOne({
             userID: wUser.id
           }, function (err, foundObj) {
