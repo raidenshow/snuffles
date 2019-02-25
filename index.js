@@ -57,7 +57,7 @@ bot.on("message", async message => {
   if((message.content.charAt(0) === prefix && cmd == prefix+"плей")){
     let link = args[0];
     if(!link)
-      return message.reply("Введи ссылкуна трек");
+      return message.reply("Введи ссылку на трек");
     if(isUrl(link) !== true)
       return message.reply("Это не ссылка на трек :(");
     if(!message.member.voiceChannel)
@@ -74,7 +74,7 @@ bot.on("message", async message => {
     });
   }
 
-  if(message.content == prefix + "skip"){
+  if(message.content == prefix + "пропустить"){
 
     var server = servers[message.guild.id];
 
@@ -82,7 +82,7 @@ bot.on("message", async message => {
       server.dispatcher.end();
   }
 
-  if(message.content == prefix + "disconnect"){
+  if(message.content == prefix + "стпо"){
 
     var server = servers[message.guild.id];
 
