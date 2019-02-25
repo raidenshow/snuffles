@@ -36,6 +36,28 @@ var warnSchema = new mongoose.Schema({
   warnedVia: String
 });
 
+var Warns = mongoose.model("Warns", warnSchema);
+
+Warns.create({
+  userID: 'testid',
+  userNickname: 'testnick',
+  warnReason: 'String',
+  moderatorID: 'String',
+  moderatorNickname: 'String',
+  when: 'Date',
+  channeID: 'String',
+  channelName: 'String',
+  warnedVia: 'String'
+}, function(error, data){
+  if(error){
+    console.log("Пробелема с добавлением документа в коллекцию");
+    console.log(error);
+  }else {
+    console.log("Data added to collection: ");
+    console.log(data);
+  }
+})
+
 
 
 
