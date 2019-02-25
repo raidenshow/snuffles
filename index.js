@@ -10,54 +10,6 @@ const hiChannel = botconfig.hiChannel
 const ms = require("ms");
 
 
-const mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-
-mongoose.connect(process.env.DATA_LOGINS, {
-  useNewUrlParser: true
-}, function(error){
-  if(error){
-    console.log(error);
-  }else{
-    console.log("Connected to the database");
-  }
-});
-
-
-var warnSchema = new mongoose.Schema({
-  userID: String,
-  userNickname: String,
-  warnReason: String,
-  moderatorID: String,
-  moderatorNickname: String,
-  when: Date,
-  channeID: String,
-  channelName: String,
-  warnedVia: String
-});
-
-var Warns = mongoose.model("Warns", warnSchema);
-
-Warns.create({
-  userID: 'testid',
-  userNickname: 'testnick',
-  warnReason: 'String',
-  moderatorID: 'String',
-  moderatorNickname: 'String',
-  channeID: 'String',
-  channelName: 'String',
-  warnedVia: 'String'
-}, function(error, data){
-  if(error){
-    console.log("Пробелема с добавлением документа в коллекцию");
-    console.log(error);
-  }else {
-    console.log("Data added to collection: ");
-    console.log(data);
-  }
-})
-
-
 
 
 bot.on("ready", async () => {

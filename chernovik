@@ -1,0 +1,23 @@
+mongoose.connect(process.env.DATA_LOGINS, {
+  useNewUrlParser: true
+}, function(error){
+  if(error){
+    console.log(error);
+  }else{
+    console.log("Connected to the database");
+  }
+});
+
+
+
+
+
+userID: String,
+userNickname: String,
+warnReason: String,
+moderatorID: String,
+moderatorNickname: String,
+when: Date,
+channeID: String,
+channelName: String,
+warnedVia: String
