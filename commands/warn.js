@@ -103,36 +103,37 @@ module.exports.run = async (bot, message, args) => {
             mutetime = "20m";
           default:
             mutetime = "30m";
+
+            
+            var user_obj = User.findOne({
+                userID: wUser.id
+              }, function (err, foundObj) {
+
+              var timestamp = new Date().getTime();
+              var mutedUntil = new Date();
+
+              mutedUntil.setTime(timestamp + ms(mutetime));
+
+              foundObj.mutedUntil = mutedUntil;
+              foundObj.save(function(err, updatedObj){
+                if(err)
+                  console.log(err);
+                });
+              });
+              wUser.addRole(muterole.id);
+              message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
+
+              setTimeout(function(){
+                if(wUser.roles.has(muterole.id)){
+                  wUser.removeRole(muterole.id);
+                  warnchannel.send(`<@${wUser.id}> был размучен!`);
+                }
+              }, ms(mutetime));
         }
       }
     }
   }
   });
-
-        var user_obj = User.findOne({
-            userID: wUser.id
-          }, function (err, foundObj) {
-
-          var timestamp = new Date().getTime();
-          var mutedUntil = new Date();
-
-          mutedUntil.setTime(timestamp + ms(mutetime));
-
-          foundObj.mutedUntil = mutedUntil;
-          foundObj.save(function(err, updatedObj){
-            if(err)
-              console.log(err);
-            });
-          });
-          wUser.addRole(muterole.id);
-          message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
-
-          setTimeout(function(){
-            if(wUser.roles.has(muterole.id)){
-              wUser.removeRole(muterole.id);
-              warnchannel.send(`<@${wUser.id}> был размучен!`);
-            }
-          }, ms(mutetime));
         }
 
 
