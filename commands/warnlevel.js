@@ -20,8 +20,9 @@ let wUser = message.guild.member(message.mentions.users.first()) || message.guil
         if (!foundObj)
           console.log("Something stange happend");
         else {
-          var numberWarnings = user_obj.numberWarnings;
-          message.reply(`<@${wUser.id}> получил ${numberWarnings} предупреждений.`);
+          var warnings = user_obj.numberWarnings;
+          console.log(warnings);
+          message.reply(`<@${wUser.id}> получил ${warnings} предупреждений.`);
 
        }
       }
