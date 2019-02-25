@@ -1,0 +1,34 @@
+const Discord = require("discord.js");
+const botconfig = require("./botconfig.json");
+const modRoles = botconfig.modRoles;
+
+
+module.exports.run = async (bot, message, args) => {
+  if(!message.member.roles.some(r=>modRoles.includes(r.name)) )
+      return message.reply("Сорян, ты должен быть модератором или администратором, чтобы пользоваться этой командой!");
+
+
+    let User = message.mentions.members.first() || message.guild.members.get(args[0]);
+        if(!User) return message.reply("Кого размьючиваем-то?");
+        let reason = args[1];
+        console.log("Размут")
+        let muted = message.guild.roles.find(r => r.name === "muted");
+        if(!User.roles.has(muted.id)) return message.reply("Челик и так не замьючен.");
+        await(User.removeRole(muted.id));
+        message.channel.send(`${User} размьючен.`)
+  }
+
+
+      try {
+          if (bannedLinks.some(word => message.content.toLowerCase().includes(word))) {
+              if(message.member.roles.some(r=>modRoles.includes(r.name)) ) return;
+              await message.delete();
+              await message.channel.send(`На сервере запрещено отправлять любые ссылки!`);
+          }
+      } catch (e) {
+          console.log(e);
+}
+
+module.exports.help = {
+  name: "размут"
+}
