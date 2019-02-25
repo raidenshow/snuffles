@@ -74,10 +74,10 @@ module.exports.run = async (bot, message, args) => {
                   });
                   var newWarns = foundObj.warns;
 
-  if(newWarns == 1){
-        message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
+                  if(newWarns == 1){
+                    message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
       }
-      else{
+        else{
         switch (newWarns) {
           case 2:
             mutetime = "5m";
@@ -118,14 +118,14 @@ module.exports.run = async (bot, message, args) => {
         }
       }
     }
-    let warnEmbed = new Discord.RichEmbed()
-    .setDescription("Warns")
-    .setAuthor(message.author.username)
-    .setColor("#fc6400")
-    .addField("Warned User", `<@${wUser.id}>`)
-    .addField("Warned In", message.channel)
-    .addField("Number of Warnings", foundObj.warns)
-    .addField("Reason", wreason);
+      let warnEmbed = new Discord.RichEmbed()
+      .setDescription("Warns")
+      .setAuthor(message.author.username)
+      .setColor("#fc6400")
+      .addField("Warned User", `<@${wUser.id}>`)
+      .addField("Warned In", message.channel)
+      .addField("Number of Warnings", foundObj.warns)
+      .addField("Reason", wreason);
 
 
 let warnchannel = message.guild.channels.find(channel => channel.name === "log");
