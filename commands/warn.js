@@ -134,7 +134,7 @@ module.exports.run = async (bot, message, args) => {
             }
           }, ms(mutetime));
         }
-}
+
 
 module.exports.help = {
   name: "варн"
