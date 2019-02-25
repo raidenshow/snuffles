@@ -54,10 +54,6 @@ bot.on("message", async message => {
 
 
   //////music
-  let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
-  var args = messageArray.slice(1);
-
   if((message.content.charAt(0) === prefix && cmd == prefix+"плей")){
     let link = args[0];
     if(!link)
@@ -95,7 +91,7 @@ bot.on("message", async message => {
   }
   //////
 
-  
+
 });
 
 
