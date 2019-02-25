@@ -10,7 +10,7 @@ const hiChannel = botconfig.hiChannel
 const ms = require("ms");
 const isUrl = require("is-url");
 const YTDL = require("ytdl-core");
-const ffmpeg = require('@ffmpeg-installer/ffmpeg');
+const ffmpeg = require('ffmpeg');
 var servers = {};
 
 fs.readdir("./commands/", (err, files) => {
@@ -85,7 +85,7 @@ bot.on("message", async message => {
       server.dispatcher.end();
   }
 
-  if(message.content == prefix + "стпо"){
+  if(message.content == prefix + "стоп"){
 
     var server = servers[message.guild.id];
 
