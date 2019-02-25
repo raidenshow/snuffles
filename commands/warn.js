@@ -104,7 +104,7 @@ module.exports.run = async (bot, message, args) => {
           default:
             mutetime = "30m";
 
-            
+
             var user_obj = User.findOne({
                 userID: wUser.id
               }, function (err, foundObj) {
