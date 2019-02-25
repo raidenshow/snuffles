@@ -12,7 +12,7 @@ var User = require('./../models/user.js');
 module.exports.run = async (bot, message, args) => {
 
   //!warn @daeshan <reason>
-  if(!message.member.hasPermission("MANAGE_MEMBERS"))
+  if(!message.member.hasPermission("MANAGE_MESSAGES"))
   return message.reply("Так могут только модеры и админы :)");
 
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
