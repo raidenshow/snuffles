@@ -120,6 +120,7 @@ module.exports.run = async (bot, message, args) => {
                   console.log(err);
                 });
               });
+              let muterole = message.guild.roles.find(`name`, "muted");
               wUser.addRole(muterole.id);
               message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
 
