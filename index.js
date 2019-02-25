@@ -205,6 +205,6 @@ bot.on("message", async message => {
 //         console.log(e);
 //     }
 //
-});
+);
 
 bot.login(process.env.BOT_TOKEN);
