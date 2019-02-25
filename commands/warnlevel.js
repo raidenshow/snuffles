@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 mongoose.Promise = Promise
 
 module.exports.run = async (bot, message, args) => {
-mongoose.connect(DATA_LOGINS);
+mongoose.connect(DATA_LOGINS, { useNewUrlParser: true });
 let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 
   if(!warns[wUser.id]) warns[wUser.id] = {
