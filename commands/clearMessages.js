@@ -18,8 +18,8 @@ module.exports.run = async (bot, message, args) => {
 
       var deleteCount = parseInt(args[0], 10);
       var deletedCountup = deleteCount + 1;
-      if(!deleteCount || deleteCount < 1 || deleteCount > 100)
-        return message.reply("Укажи, сколько сообщений надо удалить (от 1 до 100)");
+      if(!deleteCount || deleteCount < 1 || deleteCount > 1000)
+        return message.reply("Укажи, сколько сообщений надо удалить (от 1 до 1000)");
 
       const fetched = await message.channel.fetchMessages({limit: deletedCountup});
       message.channel.bulkDelete(fetched)
