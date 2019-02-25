@@ -19,7 +19,7 @@ if(!wUser) return message.reply("Нет такого челика :(");
         if (!foundObj)
           console.log("Something stange happend");
         else {
-          var warnings = user_obj.warns;
+          var warnings = foundObj.warns;
           console.log(warnings);
           message.reply(`<@${wUser.id}> получил ${warnings} предупреждений.`);
 
